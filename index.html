@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Te amo mi niña hermosa</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      color: white;
+      background: linear-gradient(135deg, #ff3f7c, #ff7ca8, #ffc6d7, #b3124a);
+      background-size: 400% 400%;
+      animation: bgMove 14s ease infinite;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.35;
+      animation: floatBlob 12s infinite ease-in-out;
+    }
+
+    .blob.one {
+      width: 340px;
+      height: 340px;
+      background: rgba(255,255,255,0.9);
+      top: -110px;
+      left: -120px;
+    }
+
+    .blob.two {
+      width: 460px;
+      height: 460px;
+      background: rgba(255,122,162,0.95);
+      right: -180px;
+      bottom: -170px;
+      animation-delay: 2s;
+    }
+
+    .blob.three {
+      width: 220px;
+      height: 220px;
+      background: rgba(255,230,240,0.95);
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: 4s;
+    }
+
+    @keyframes floatBlob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, 20px) scale(1.12); }
+    }
+
+    .sparkle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      filter: blur(1px);
+      animation: sparkleMove 3.5s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes sparkleMove {
+      0%, 100% { transform: scale(0.6); opacity: 0.25; }
+      50% { transform: scale(1.4); opacity: 1; }
+    }
+
+    .title {
+      position: absolute;
+      top: 16px;
+      width: 100%;
+      text-align: center;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 900;
+      z-index: 20;
+      text-shadow: 0 0 16px rgba(0,0,0,0.3);
+      padding: 0 16px;
+      animation: titleGlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes titleGlow {
+      0%, 100% { transform: translateY(0); text-shadow: 0 0 14px rgba(0,0,0,0.3); }
+      50% { transform: translateY(-2px); text-shadow: 0 0 22px rgba(255,255,255,0.3); }
+    }
+
+    .subtitle {
+      position: absolute;
+      top: 60px;
+      width: 100%;
+      text-align: center;
+      font-size: clamp(0.92rem, 2vw, 1.05rem);
+      z-index: 20;
+      text-shadow: 0 0 10px rgba(0,0,0,0.22);
+      opacity: 0.96;
+      padding: 0 16px;
+      animation: subtitleFloat 3.2s ease-in-out infinite;
+    }
+
+    @keyframes subtitleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .music-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 30;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+      font-size: 0.92rem;
+      font-weight: 700;
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 10;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .heart-area {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      animation: rise 3s infinite ease-in-out;
+    }
+
+    @keyframes rise {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .heart-glow {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 68%);
+      animation: glowPulse 1.8s infinite ease-in-out;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.55; }
+      50% { transform: scale(1.18); opacity: 0.9; }
+    }
+
+    .heart {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(145deg, #ff1451, #ff6ea5);
+      transform: rotate(-45deg);
+      border-radius: 12px;
+      box-shadow:
+        0 0 28px rgba(255, 0, 90, 0.58),
+        0 0 70px rgba(255, 255, 255, 0.14);
+      animation: pulse 1.1s infinite ease-in-out;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(145deg, #ff1451, #ff6ea5);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -90px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 90px;
+      top: 0;
+    }
+
+    .heart-area::after {
+      content: "❤";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      transform: rotate(45deg);
+      font-size: 2.7rem;
+      color: rgba(255,255,255,0.97);
+      text-shadow: 0 0 14px rgba(255,255,255,0.6);
+      animation: shine 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.12); }
+    }
+
+    @keyframes shine {
+      0%, 100% { opacity: 0.85; transform: rotate(45deg) scale(1); }
+      50% { opacity: 1; transform: rotate(45deg) scale(1.14); }
+    }
+
+    .card {
+      width: min(800px, calc(100% - 24px));
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      padding: 22px 20px 18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+      animation: cardFloat 4s infinite ease-in-out, cardEntrance 1s ease both;
+    }
+
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes cardEntrance {
+      from { opacity: 0; transform: translateY(30px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .message {
+      font-size: clamp(1rem, 2.2vw, 1.12rem);
+      line-height: 1.7;
+      min-height: 165px;
+      text-shadow: 0 0 8px rgba(0,0,0,0.18);
+      letter-spacing: 0.1px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .line {
+      margin: 5px 0;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message b {
+      color: #fff7b8;
+      font-weight: 900;
+    }
+
+    .signature {
+      margin-top: 10px;
+      font-size: 1rem;
+      font-style: italic;
+      color: #fff8d9;
+      text-shadow: 0 0 8px rgba(0,0,0,0.18);
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .signature.show {
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .btn {
+      border: none;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, #ff2d75, #ff7aa2);
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(255, 45, 117, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      animation: btnPulse 2.2s infinite ease-in-out;
+    }
+
+    @keyframes btnPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 14px 30px rgba(255, 45, 117, 0.45);
+      filter: brightness(1.05);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn.secondary {
+      background: linear-gradient(135deg, #ffffff33, #ffffff22);
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.15);
+    }
+
+    /* Corazones flotantes */
+    .floating-heart {
+      position: absolute;
+      top: -40px;
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+      text-shadow: 0 0 10px rgba(255,255,255,0.35);
+      animation: fallHeart linear forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes fallHeart {
+      0% {
+        transform: translateY(-20px) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      100% {
+        transform: translateY(112vh) scale(1.45) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Explosión de corazones */
+    .burst-heart {
+      position: absolute;
+      font-size: 1.2rem;
+      pointer-events: none;
+      z-index: 25;
+      animation: burstFly 1.6s ease-out forwards;
+      text-shadow: 0 0 12px rgba(255,255,255,0.55);
+    }
+
+    @keyframes burstFly {
+      0% {
+        transform: translate(0, 0) scale(0.4) rotate(0deg);
+        opacity: 0;
+      }
+      15% { opacity: 1; }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .title {
+        top: 14px;
+        font-size: 1.22rem;
+      }
+
+      .subtitle {
+        top: 49px;
+        font-size: 0.88rem;
+      }
+
+      .music-tag {
+        top: auto;
+        bottom: 12px;
+        right: 12px;
+        font-size: 0.8rem;
+      }
+
+      .heart-area {
+        width: 200px;
+        height: 200px;
+      }
+
+      .heart {
+        width: 140px;
+        height: 140px;
+      }
+
+      .heart::before,
+      .heart::after {
+        width: 140px;
+        height: 140px;
+      }
+
+      .heart::before {
+        top: -70px;
+      }
+
+      .heart::after {
+        left: 70px;
+      }
+
+      .heart-area::after {
+        font-size: 2.1rem;
+      }
+
+      .message {
+        min-height: 140px;
+        line-height: 1.5;
+      }
+
+      .card {
+        padding: 18px 15px 16px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+  </div>
+
+  <div class="music-tag">🎵 Niña Bonita</div>
+
+  <div class="title">Feliz aniversario mi niña hermosa 💖</div>
+  <div class="subtitle">Estoy enamorado de ti y mi vida es mejor contigo ✨</div>
+
+  <div class="center">
+    <div class="heart-area">
+      <div class="heart-glow"></div>
+      <div class="heart"></div>
+    </div>
+
+    <div class="card">
+      <div id="message" class="message hidden"></div>
+
+      <div class="actions">
+        <button class="btn" id="openGift">Abrir regalo 💝</button>
+        <button class="btn secondary hidden" id="musicBtn">Pausar música 🎶</button>
+      </div>
+
+      <div id="signature" class="signature hidden">siempre tuyo, con todo mi amor ❤️</div>
+    </div>
+  </div>
+
+  <audio id="music" loop preload="auto" playsinline autoplay>
+    <source src="nina-bonita.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const message = document.getElementById("message");
+    const signature = document.getElementById("signature");
+    const openGift = document.getElementById("openGift");
+    const musicBtn = document.getElementById("musicBtn");
+    const music = document.getElementById("music");
+
+    const lines = [
+      "Estoy enamorado de ti 💘 mi niña hermosa, y cada día te amo más ❤️",
+      "Feliz aniversario, amorcito 💞 gracias por llenar mi vida de luz ✨",
+      "Soy tuyo 💖 con todo mi corazón, con toda mi alma y con todo mi amor 💗",
+      "Desde que llegaste, mi vida es más bonita 🌹 más dulce 🍓 y más feliz 😍",
+      "Me encantas demasiado bebé 💓 y siempre voy a cuidarte y amarte 💝"
+    ];
+
+    function renderLines() {
+      message.classList.remove("hidden");
+      message.innerHTML = "";
+
+      lines.forEach((line, index) => {
+        const div = document.createElement("div");
+        div.className = "line";
+        div.style.animationDelay = `${index * 0.65}s`;
+        div.textContent = line;
+        message.appendChild(div);
+      });
+    }
+
+    function createSparkles() {
+      for (let i = 0; i < 38; i++) {
+        const s = document.createElement("div");
+        s.className = "sparkle";
+        const size = 2 + Math.random() * 7;
+        s.style.width = s.style.height = size + "px";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = Math.random() * 100 + "vh";
+        s.style.animationDelay = Math.random() * 3 + "s";
+        document.body.appendChild(s);
+      }
+    }
+
+    // Lluvia constante de corazones
+    function createHeartRain() {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.innerHTML = "❤";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (10 + Math.random() * 24) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+      heart.style.opacity = Math.random() * 0.75 + 0.25;
+      heart.style.color = `hsl(${330 + Math.random() * 18}, 100%, ${60 + Math.random() * 20}%)`;
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    function burstHearts(count = 20) {
+      const rect = openGift.getBoundingClientRect();
+      const startX = rect.left + rect.width / 2;
+      const startY = rect.top + rect.height / 2;
+
+      for (let i = 0; i < count; i++) {
+        const h = document.createElement("div");
+        h.className = "burst-heart";
+        h.textContent = "❤";
+        h.style.left = startX + "px";
+        h.style.top = startY + "px";
+
+        const tx = (Math.random() - 0.5) * 320 + "px";
+        const ty = (-120 - Math.random() * 240) + "px";
+        h.style.setProperty("--tx", tx);
+        h.style.setProperty("--ty", ty);
+        h.style.color = `hsl(${330 + Math.random() * 18}, 100%, ${62 + Math.random() * 18}%)`;
+        h.style.fontSize = (14 + Math.random() * 20) + "px";
+
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 1600);
+      }
+    }
+
+    async function tryPlayMusic() {
+      try {
+        music.volume = 0.45;
+        await music.play();
+        musicBtn.classList.remove("hidden");
+        musicBtn.textContent = "Pausar música 🎶";
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    createSparkles();
+
+    // lluvia constante
+    setInterval(() => {
+      createHeartRain();
+      createHeartRain(); // doble para que se vea más constante
+    }, 140);
+
+    window.addEventListener("load", async () => {
+      await tryPlayMusic();
+    });
+
+    document.addEventListener("click", async () => {
+      if (music.paused) {
+        await tryPlayMusic();
+      }
+    }, { once: true });
+
+    let musicPlaying = false;
+
+    openGift.addEventListener("click", async () => {
+      openGift.textContent = "Te amo muchísimo 💞";
+      renderLines();
+
+      signature.classList.remove("hidden");
+      signature.classList.add("show");
+
+      musicBtn.classList.remove("hidden");
+
+      const started = await tryPlayMusic();
+      musicPlaying = started;
+
+      burstHearts(28);
+    });
+
+    musicBtn.addEventListener("click", async () => {
+      if (musicPlaying) {
+        music.pause();
+        musicBtn.textContent = "Reproducir música ▶️";
+        musicPlaying = false;
+      } else {
+        const started = await tryPlayMusic();
+        musicPlaying = started;
+      }
+    });
+  </script>
+</body>
+</html>
